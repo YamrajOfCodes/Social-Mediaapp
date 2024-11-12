@@ -21,6 +21,8 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(urlencoded({ extended: true }));
 
+app.set('trust proxy', 1); // For production environments
+
 const corsOptions = {
     origin:"http://localhost:5173",
     credentials: true
@@ -39,7 +41,7 @@ app.get("*", (req,res)=>{
 })
 
 
-server.listen(4000, () => {
+server.listen(PORT, () => {
     connectDB();
     console.log(`Server listen at port ${PORT}`);
 });
